@@ -1,24 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Home from './Pages/Home';
+import Character from './Pages/Cats';
+import { useState, useEffect } from 'react';
+api_key=live_ykD4IvUF2Vht4ALDZOSGTY2fQRrYvtu4EZv3lOnTUiP3jZgQYUq8PjGW2EHdwmIK
 
 function App() {
+    
+  const [allCats, setAllCats] = useState([]);
+
+  useEffect(() => {
+      const fetchData = async () => {    
+          const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=10');
+          const data = await response.json();        
+          setAllCats(data);            
+      }
+  fetchData(); 
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Home</Link>       
+      </nav>
+      <Routes>
+        <Route path='/' element={ <Home charArr={allCats} />} />
+        <Route path='/character/:id' element={ <Character />} />        
+      </Routes>
+      <h1>Footer</h1>
+    </BrowserRouter>
   );
 }
 
