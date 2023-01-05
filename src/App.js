@@ -1,9 +1,10 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './Pages/Home';
-import Character from './Pages/Cats';
+import Cats from './Pages/Cats';
 import { useState, useEffect } from 'react';
-api_key=live_ykD4IvUF2Vht4ALDZOSGTY2fQRrYvtu4EZv3lOnTUiP3jZgQYUq8PjGW2EHdwmIK
+
+// api_key=live_ykD4IvUF2Vht4ALDZOSGTY2fQRrYvtu4EZv3lOnTUiP3jZgQYUq8PjGW2EHdwmIK // for thecatapi.com
 
 function App() {
     
@@ -25,7 +26,7 @@ function App() {
       </nav>
       <Routes>
         <Route path='/' element={ <Home charArr={allCats} />} />
-        <Route path='/character/:id' element={ <Character />} />        
+        <Route path='/Cats/:id' element={ <Cats />} />        
       </Routes>
       <h1>Footer</h1>
     </BrowserRouter>

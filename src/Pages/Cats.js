@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const Character = () => {
+const Cat = () => {
 
     const { id } = useParams();
 
