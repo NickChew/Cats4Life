@@ -35,8 +35,8 @@ function App() {
         })
         setAllCats(catData);
       } catch (err) {
-        setErrorMsg(err.errorMsg)
-        console.log(errorMsg)
+        setErrorMessage(err.errorMessage)
+        console.log(errorMessage)
       }
     }
     fetchCatData();
