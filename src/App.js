@@ -1,3 +1,4 @@
+
 import "./App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./Pages/Home";
@@ -6,10 +7,12 @@ import { useState, useEffect } from "react";
 import logo from "./Cats4Life.png";
 
 function App() {
+
   const [allCats, setAllCats] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
+   const fetchData = async () => {
       const response = await fetch(
         "https://api.thecatapi.com/v1/images/search?limit=10"
       );
@@ -38,7 +41,29 @@ function App() {
       </Routes>
       <h1>Footer</h1>
     </BrowserRouter>
+
   );
+
+// following should add addToCart to cart and add up or remove and subtract
+
+  const [toggle, setToggle] = useState(false);
+  const [cart, setCart] = useState({});
+  
+  const handleToggle = () =>{
+    setToggle(!toggle)
+  } 
+  
+  const addToCart = () =>{
+    
+  }
+  // const removeFromCart = () =>{
+
+  // } 
+  <div className="buttons">
+    {toggle ? (<h2>Add To Cart</h2>) : (<h2>Remove From Cart</h2>)}
+    <button className={toggle ? "addToCart" : "removeFromCart"} onClick={handleToggle}>Add / Remove toggle</button>
+  </div>
+  
 }
 
 export default App;
