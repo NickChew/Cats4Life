@@ -1,7 +1,10 @@
-// Brians example using Faker to get some fake data
-import './App.css';
-import { faker } from '@faker-js/faker'
-import { useEffect, useState } from 'react';
+
+import "./App.css";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "./Pages/Home";
+import Character from "./Pages/Cats";
+import { useState, useEffect } from "react";
+import logo from "./Cats4Life.png";
 
 function App() {
 
@@ -9,48 +12,36 @@ function App() {
   const [errorMessage, setErrorMessage] = useState(false);
 
   useEffect(() => {
-    const fetchCatData = async () => {
-      try {
-        const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=10")
-        if (!response.ok){
-          throw new Error(response.statusText);
-        }
-        const data = await response.json();
-        const catData = data.map((cat, index) => {
-          return {
-            catId: index,
-            catImage: cat.url,
-            name: faker.name.findName(),
-            breed: faker.animal.cat(),
-            price: faker.finance.amount(50, 500),
-            gender: faker.name.gender(),
-            location: faker.address.country()
-          }
-        })
-        setAllCats(catData);
-      } catch(err) {
-        setErrorMessage(err.errorMessage);
-      }
-    }
-    fetchCatData();
-  }, [])
-  
+   const fetchData = async () => {
+      const response = await fetch(
+        "https://api.thecatapi.com/v1/images/search?limit=10"
+      );
+      const data = await response.json();
+      setAllCats(data);
+    };
+    fetchData();
+  }, []);
+
   return (
-    <div className="App">
-      {allCats.map((cat, index) => {
-        return (
-          <div>
-            <img src={cat.catImage} alt={cat.name} width="250px" height="300px"/>
-            <h4>{cat.name}</h4>
-            <p>£{cat.price}</p>
-            <p>The cats gender is: {cat.gender}</p>
-            <p>Breed : {cat.breed}</p>
-            <p>Location:- {cat.location}</p>
-            <button type="submit" id="addToCartBtn" >Add to Cart</button> 
-          </div>
-        )
-      })}
-    </div>
+    <BrowserRouter>
+      <div className="navBar">
+        <nav>
+          <img id="logo" src={logo} alt="Cats4Life logo"></img>
+          <Link to="/">Home</Link>
+          <Link to="/Pages/About.js">About us</Link>
+          <Link to="/">Shop</Link>
+          <Link to="/Pages/PetAdvice.js">Pet advice</Link>
+          <Link to="/Pages/Contact.js">Contact</Link>
+        </nav>
+      </div>
+
+      <Routes>
+        <Route path="/" element={<Home charArr={allCats} />} />
+        <Route path="/character/:id" element={<Character />} />
+      </Routes>
+      <h1>Footer</h1>
+    </BrowserRouter>
+
   );
 
 // following should add addToCart to cart and add up or remove and subtract
@@ -74,4 +65,5 @@ function App() {
   </div>
   
 }
+
 export default App;
