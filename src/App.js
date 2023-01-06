@@ -54,6 +54,7 @@ function App() {
   );
 
 // following should add addToCart to cart and add up or remove and subtract
+
   const [toggle, setToggle] = useState(false);
   const [cart, setCart] = useState({});
   
@@ -72,6 +73,5 @@ function App() {
     <button className={toggle ? "addToCart" : "removeFromCart"} onClick={handleToggle}>Add / Remove toggle</button>
   </div>
   
-
 }
 export default App;
