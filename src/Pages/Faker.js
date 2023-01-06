@@ -22,7 +22,7 @@ function App() {
             catImage: cat.url,
             name: faker.name.findName(),
             breed: faker.animal.cat(),
-            price: faker.finance.amount(100, 300),
+            price: faker.finance.amount(50, 500),
             gender: faker.name.gender(),
             location: faker.address.country()
           }
