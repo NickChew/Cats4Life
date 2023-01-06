@@ -10,6 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  align-content: flex-start;
 }
 
 .pageWrapper img {
@@ -73,8 +74,8 @@
 .topSection {
   position: relative;
   display: flex;
-  width: 200;
-  height: 250;
+  width: flex;
+  height: flex;
   justify-content: center;
   background: linear-gradient(0deg, rgb(1, 63, 149) 0%, rgb(158, 156, 234) 100%);
 }
@@ -107,6 +108,8 @@ img {
 }
 
 .catInfo {
+  height: 300px;
+  width: 250px;
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
@@ -179,4 +182,13 @@ img {
   font-weight: 900;
   text-shadow: 0px 0px 10px white;
   cursor: pointer;
+}
+
+footer {
+  background-color: lightblue;
+  padding: 30px;
+  position: inherit;
+  display: flex;
+  justify-content: space-evenly;
+  text-decoration: overline;
 }

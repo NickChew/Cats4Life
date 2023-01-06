@@ -93,7 +93,7 @@ const handleAddToCart = (catData, index) => {
           {allCats.map((cat, index) => {
             return (
               <div className='catInfo'>
-                <img key={index} src={cat.catImg} alt={cat.name} height='250px' width='250px' onClick={() => handleClick(cat)} />
+                <img key={index} src={cat.catImg} alt={cat.name} height='300px' width='250px' onClick={() => handleClick(cat)} />
                 <h2 key={index} onClick={()=>handleAddToCart(cat, index)}> Add to cart</h2>
 
               </div>
@@ -105,7 +105,7 @@ const handleAddToCart = (catData, index) => {
         {showModal && <Modal closeModal={setShowModal} cat={currentCat}></Modal>}
       </div >
    
-      <h1>Footer</h1>
+    
       <div className="Footer">
         <footer>
           <Link to="/">Home</Link><br></br>
