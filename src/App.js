@@ -1,7 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Home from "./Pages/Home";
-import Character from "./Pages/Cats";
+import { BrowserRouter, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import logo from "./Cats4Life.png";
 import { faker } from '@faker-js/faker'
@@ -13,6 +11,7 @@ function App() {
   const [errorMessage, setErrorMessage] = useState(false);
   const [currentCat, setCurrentCat] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const fetchCatData = async () => {
@@ -24,6 +23,7 @@ function App() {
         const data = await response.json()
         const catData = data.map((cat, index) => { //for every image in the cat array, do this and it should be different
           return {
+            inCart: false,
             catId: index,
             catImg: cat.url,
             name: faker.name.fullName(),
@@ -48,6 +48,31 @@ function App() {
     setShowModal(true)
   }
 
+const handleAddToCart = (catData, index) => {
+  if (!catData.inCart){
+    let updatedCats=[...allCats];
+    updatedCats[index].inCart = true;
+    setAllCats(updatedCats);
+
+    let updatedCart=[...cart];
+    updatedCart.push(catData);
+    setCart(updatedCart)
+    console.log(catData);
+    
+  } else {
+    for(let i=0; i<cart.length; i++){
+      if (cart[i].catId === index){
+        let removeCatFromCart = [...cart];
+        removeCatFromCart.splice(i,1);
+        setCart(removeCatFromCart);
+
+        let updatedAllCats=[...allCats];
+        updatedAllCats[index].inCart=false;
+        setAllCats(updatedAllCats);
+      }
+    }
+  }
+}
 
   return (
     <BrowserRouter>
@@ -62,18 +87,16 @@ function App() {
         </nav>
       </div>
 
-
       <div className="App">
 
         <div className='catData' >
           {allCats.map((cat, index) => {
             return (
-
               <div className='catInfo'>
-                <h3> Add to cart</h3>
                 <img key={index} src={cat.catImg} alt={cat.name} height='250px' width='250px' onClick={() => handleClick(cat)} />
-              </div>
+                <h2 key={index} onClick={()=>handleAddToCart(cat, index)}> Add to cart</h2>
 
+              </div>
             )
           })}
         </div >
@@ -81,35 +104,50 @@ function App() {
         {console.log(currentCat)}
         {showModal && <Modal closeModal={setShowModal} cat={currentCat}></Modal>}
       </div >
-
-      <Routes>
-        <Route path="/" element={<Home charArr={allCats} />} />
-        <Route path="/character/:id" element={<Character />} />
-      </Routes>
+   
       <h1>Footer</h1>
+      <div className="Footer">
+        <footer>
+          <Link to="/">Home</Link><br></br>
+          <Link to="/Pages/About.js">About us</Link><br></br>
+          <Link to="/">Shop</Link><br></br>
+          <Link to="/Pages/PetAdvice.js">Pet advice</Link><br></br>
+          <Link to="/Pages/Contact.js">Contact</Link>
+          <li>Facebook</li>
+          <li>twitter </li>
+          <li>Snapchat</li>
+          <li>Copyright ©</li>
+        </footer>
+      </div>
     </BrowserRouter>
 
   );
 
   // following should add addToCart to cart and add up or remove and subtract
 
-  const [toggle, setToggle] = useState(false);
-  const [cart, setCart] = useState({});
+//   const [toggle, setToggle] = useState(false);
+//   const [cart, setCart] = useState({});
+//   const [totalCart, setTotalcart] = useState({});
 
-  const handleToggle = () => {
-    setToggle(!toggle)
-  }
+//   const handleToggle = () => {
+//     setToggle(!toggle)
+//   }
 
-  const addToCart = () => {
+//   const addToCart = () => {
+//     <div>
+//       <h3> Added to cart</h3>
+//       <img key={index} src={cat.catImg} alt={cat.name} height='250px' width='250px' />
 
-  }
-  // const removeFromCart = () =>{
+//     </div>
+//   }
 
-  // } 
-  <div className="buttons">
-    {toggle ? (<h2>Add To Cart</h2>) : (<h2>Remove From Cart</h2>)}
-    <button className={toggle ? "addToCart" : "removeFromCart"} onClick={handleToggle}>Add / Remove toggle</button>
-  </div>
+//   const removeFromCart = () =>{
+
+//   } 
+//   <div className="buttons">
+//     {toggle ? (<h2>Add To Cart</h2>) : (<h2>Remove From Cart</h2>)}
+//     <button className={toggle ? "addToCart" : "removeFromCart"} onClick={handleToggle}>Add / Remove toggle</button>
+//   </div>
 
 }
 
