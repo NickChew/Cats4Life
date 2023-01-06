@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+nav {
+  background-color: pink;
+  padding: 30px;
+  position: inherit;
+  display: flex;
+  justify-content: space-evenly;
+  text-decoration: overline;
+}
+
+img {
+  margin-top: -19px;
+  margin-left: -100px;
+  height: 80px;
+  width: 80px;
+}
