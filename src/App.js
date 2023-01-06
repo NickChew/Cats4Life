@@ -40,21 +40,25 @@ function App() {
   return (
 
     <div className="App">
-      {allCats.map((cat, index) => {
-        return (
-          <div>
+      <div className='Wrapper'>
+        <div className='catData' >
+          {allCats.map((cat, index) => {
+            return (
+              <div className='catInfo'>
+                <h3> Add to cart</h3>
+                <img src={cat.catImg} alt={cat.name} height='250px' width='250px'></img>
+                <h4>{cat.name}</h4>
+                <p>£{cat.price}</p>
+                <p>{cat.gender}</p>
+                <p>Breed : {cat.breed}</p>
+                <p>Location: {cat.location}</p>
+              </div>
 
-            <h3> Add to cart</h3>
-            <img src={cat.catImg} alt={cat.name}></img>
-            <h4>{cat.name}</h4>
-            <p>£{cat.price}</p>
-            <p>{cat.gender}</p>
-
-          </div>
-        )
-      })}
-
-    </div>
+            )
+          })}
+        </div >
+      </div>
+    </div >
 
 
 
