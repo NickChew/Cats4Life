@@ -3,7 +3,7 @@ import { BrowserRouter, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import logo from "./Cats4Life.png";
 import { faker } from '@faker-js/faker'
-import Modal from "./Modal"
+import Modal from "./Pages/Modal"
 
 function App() {
 
@@ -105,7 +105,6 @@ const handleAddToCart = (catData, index) => {
         {showModal && <Modal closeModal={setShowModal} cat={currentCat}></Modal>}
       </div >
    
-    
       <div className="Footer">
         <footer>
           <Link to="/">Home</Link><br></br>

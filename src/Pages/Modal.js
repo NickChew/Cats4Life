@@ -4,7 +4,7 @@ const Modal = (props) => {
     const modalRef = useRef();
 
     const handleClick = (e) => {
-        if(modalRef.current === e.target){
+        if (modalRef.current === e.target) {
             props.closeModal(false)
         }
     }
@@ -17,11 +17,15 @@ const Modal = (props) => {
             <div className="modalBox">
                 <p className="closeIcon" onClick={handleCloseClick}>x</p>
                 <div className="topSection">
-                    <img src={props.catImage.image_url} width="30px" alt={`Cat`} />
+                    <img src={props.cat.catImg} alt={props.cat.name} height='250px' width='250px'></img>
+                    <div className="whiteGradient"></div>
                 </div>
-                <div className="bottomSection">                    
-                    <h1>NAME: {props.cat.name}</h1>                    
-                    <p>{props.cat.breed}</p>
+                <div className="bottomSection">
+                    <h4>{props.cat.name}</h4>
+                    <p>£{props.cat.price}</p>
+                    <p>{props.cat.gender}</p>
+                    <p>Breed : {props.cat.breed}</p>
+                    <p>Location: {props.cat.location}</p>
                 </div>
             </div>
         </div>
