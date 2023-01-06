@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .pageWrapper {
   display: flex;
   flex-direction: column;
@@ -69,7 +70,7 @@
   position: relative;
 }
 
-.topSection{
+.topSection {
   position: relative;
   display: flex;
   width: 200;
@@ -92,4 +93,90 @@ img {
   margin-left: -100px;
   height: 80px;
   width: 80px;
+}
+
+
+.catData {
+  margin: 130px 50px 50px;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  justify-content: center;
+  transition: margin 0.2s ease 0s;
+  object-fit: cover;
+}
+
+.catInfo {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.modalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalBox {
+  background-color: white;
+  display: flex;
+  width: 570px;
+  height: 460px;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: scroll;
+  position: relative;
+}
+
+.topSection {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.topSection img {
+  width: 50%;
+}
+
+.topSection::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.bottomSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.closeIcon {
+  color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: 900;
+  text-shadow: 0px 0px 10px white;
+  cursor: pointer;
 }
